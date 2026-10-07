@@ -24,7 +24,7 @@ services:
     image: odoo:19.0-20260926
     container_name: odoo-backend
     restart: unless-stopped
-    command: ["odoo", "--database=odoo_demo_19", "--init=base,iso_demo", "--without-demo=True"]
+    command: ["odoo", "--database=odoo_demo_19", "--init=base", "--without-demo=True"]
     depends_on:
       - postgres
     ports:
@@ -36,6 +36,8 @@ services:
       - password=odoo_pass
       - database=odoo_demo_19
       - admin_password=Admin123
+      # Contraseña de los usuarios demo que crea iso_demo (se puede sobrescribir en .env)
+      - ISO_DEMO_PASSWORD=${ISO_DEMO_PASSWORD:-demo2026}
     volumes:
       - ./odoo.conf:/etc/odoo/odoo.conf:ro
       - ./my_addons:/mnt/addons

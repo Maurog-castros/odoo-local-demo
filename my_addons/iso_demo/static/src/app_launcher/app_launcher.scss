@@ -1,0 +1,89 @@
+@layer iso-demo-launcher {
+    .o_iso_demo_launcher {
+        --iso-demo-launcher-ink: #1f385a;
+        --iso-demo-launcher-card: #fff;
+        --iso-demo-launcher-border: rgba(28, 45, 72, 0.16);
+        --iso-demo-launcher-shadow: 0 0.25rem 0.65rem rgba(28, 45, 72, 0.16);
+
+        min-block-size: calc(100dvh - var(--o-navbar-height, 46px));
+        padding: clamp(2rem, 7vh, 5rem) clamp(1.25rem, 7vw, 8rem);
+        background:
+            linear-gradient(135deg, transparent 0 35%, rgba(255, 255, 255, 0.28) 35% 52%, transparent 52%),
+            linear-gradient(135deg, #eeedf5, #dcdbe7);
+    }
+
+    .o_iso_demo_launcher_grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+        gap: clamp(1.5rem, 3vw, 3.75rem) clamp(1.25rem, 4vw, 4.5rem);
+        inline-size: 100%;
+        max-inline-size: 51rem;
+        margin-inline: auto;
+    }
+
+    .o_iso_demo_launcher_card {
+        display: grid;
+        gap: 0.6rem;
+        place-items: center;
+        min-inline-size: 0;
+        padding: 0;
+        border: 0;
+        color: var(--iso-demo-launcher-ink);
+        background: transparent;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .o_iso_demo_launcher_icon {
+        display: grid;
+        place-items: center;
+        aspect-ratio: 1;
+        inline-size: clamp(4.25rem, 8vw, 5.25rem);
+        padding: 0.7rem;
+        border: 1px solid var(--iso-demo-launcher-border);
+        border-radius: 0.4rem;
+        background: var(--iso-demo-launcher-card);
+        box-shadow: var(--iso-demo-launcher-shadow);
+        transition: transform 150ms ease, box-shadow 150ms ease;
+    }
+
+    .o_iso_demo_launcher_icon img {
+        display: block;
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: contain;
+    }
+
+    .o_iso_demo_launcher_label {
+        inline-size: 100%;
+        overflow: clip;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .o_iso_demo_launcher_card:hover .o_iso_demo_launcher_icon,
+    .o_iso_demo_launcher_card:focus-visible .o_iso_demo_launcher_icon {
+        transform: translateY(-0.2rem);
+        box-shadow: 0 0.5rem 1rem rgba(28, 45, 72, 0.22);
+    }
+
+    .o_iso_demo_launcher_card:focus-visible {
+        outline: 3px solid #6b8ac4;
+        outline-offset: 0.3rem;
+    }
+
+    @media (max-width: 35rem) {
+        .o_iso_demo_launcher {
+            padding-block: 1.5rem 2.5rem;
+        }
+
+        .o_iso_demo_launcher_grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.75rem 1rem;
+        }
+
+        .o_iso_demo_launcher_label {
+            font-size: 0.875rem;
+        }
+    }
+}

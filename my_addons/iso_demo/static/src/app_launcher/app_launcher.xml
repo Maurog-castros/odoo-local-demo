@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="iso_demo.AppLauncher">
+        <main class="o_iso_demo_launcher" aria-labelledby="iso_demo_launcher_title">
+            <h1 id="iso_demo_launcher_title" class="visually-hidden">Aplicaciones</h1>
+            <section class="o_iso_demo_launcher_grid" aria-label="Aplicaciones disponibles">
+                <t t-foreach="apps" t-as="app" t-key="app.id">
+                    <button class="o_iso_demo_launcher_card" type="button" t-on-click="() => this.openApp(app)">
+                        <span class="o_iso_demo_launcher_icon" aria-hidden="true">
+                            <img t-att-src="this.iconSource(app)" t-att-alt="''"/>
+                        </span>
+                        <span class="o_iso_demo_launcher_label" t-esc="app.name"/>
+                    </button>
+                </t>
+            </section>
+        </main>
+    </t>
+</templates>

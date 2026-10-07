@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_app_launcher" model="ir.actions.client">
+        <field name="name">Inicio</field>
+        <field name="tag">iso_demo.app_launcher</field>
+        <field name="target">current</field>
+    </record>
+
+    <menuitem id="menu_app_launcher"
+              name="Inicio"
+              action="action_app_launcher"
+              sequence="-100"/>
+</odoo>
