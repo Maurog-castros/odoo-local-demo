@@ -46,7 +46,9 @@ docker compose restart
 
 | Campo      | Valor       |
 |------------|-------------|
-| Admin pass | `Admin123`  |
+| Usuario inicial | `admin` |
+| Contraseña inicial | `admin` |
+| Contraseña maestra de BD | Configurada en `odoo.conf` |
 | DB name    | `odoo_db`   |
 | DB user    | `odoo_user` |
 | DB pass    | `odoo_pass` |

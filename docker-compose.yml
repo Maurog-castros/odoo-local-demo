@@ -24,6 +24,7 @@ services:
     image: odoo:17
     container_name: odoo-backend
     restart: unless-stopped
+    command: ["odoo", "--database=odoo_db", "--init=base", "--without-demo=all"]
     depends_on:
       - postgres
     ports:
@@ -36,8 +37,7 @@ services:
       - database=odoo_db
       - admin_password=Admin123
     volumes:
-      - odoo_addons:/etc/odoo/addons/my_custom_modules
-      - odoo_config:/etc/odoo
+      - ./odoo.conf:/etc/odoo/odoo.conf:ro
       - ./my_addons:/mnt/addons
     networks:
       - odoo_network
@@ -64,8 +64,6 @@ services:
 # ──────────────────────────────────────────────
 volumes:
   postgres_data:
-  odoo_addons:
-  odoo_config:
 
 networks:
   odoo_network:

@@ -4,8 +4,7 @@ Write-Host "`n========================================" -ForegroundColor Cyan
 Write-Host "  Odoo Local Environment" -ForegroundColor Cyan
 Write-Host "========================================`n" -ForegroundColor Cyan
 
-$odooUrl = "http://localhost:8069"
-$adminPass = "Admin123"
+$odooUrl = "http://localhost"
 
 Write-Host "[1/3] Verificando Docker..." -ForegroundColor Yellow
 $docker = docker --version 2>$null
@@ -37,7 +36,7 @@ Write-Host "`n[3/3] Esperando Odoo..." -ForegroundColor Yellow
 $retries = 30
 while ($retries -gt 0) {
     try {
-        $response = Invoke-WebRequest -Uri "$odooUrl/healthcheck" -UseBasicParsing -TimeoutSec 2
+        $response = Invoke-WebRequest -Uri "$odooUrl/web/login" -UseBasicParsing -TimeoutSec 2
         if ($response.StatusCode -eq 200) {
             Write-Host "  Odoo está listo!`n" -ForegroundColor Green
             break
@@ -60,8 +59,8 @@ Write-Host "========================================`n" -ForegroundColor Cyan
 Write-Host "  Frontend (Nginx):  http://localhost" -ForegroundColor White
 Write-Host "  Backend (Odoo):    $odooUrl" -ForegroundColor White
 Write-Host "  PostgreSQL:        localhost:5432" -ForegroundColor White
-Write-Host "`n  Admin:  admin" -ForegroundColor White
-Write-Host "  Pass:   $adminPass" -ForegroundColor White
+Write-Host "`n  Usuario inicial: admin" -ForegroundColor White
+Write-Host "  Contraseña inicial: admin (cámbiala al primer uso)" -ForegroundColor White
 Write-Host "`n  Comandos útiles:" -ForegroundColor Yellow
 Write-Host "    docker compose logs -f odoo     # Ver logs" -ForegroundColor Gray
 Write-Host "    docker compose down             # Detener todo" -ForegroundColor Gray
