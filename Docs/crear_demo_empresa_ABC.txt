@@ -1,0 +1,1083 @@
+Actúa como **Odoo Solution Architect + Functional Consultant + Technical Consultant + Demo Builder senior**.
+
+Tienes acceso a una instancia de **Odoo ejecutándose localmente** y debes **construir directamente en ella una demo comercial completa, coherente y navegable** para una empresa de consultoría llamada **Asesorías ISO**, especializada en implementación y certificación de normas ISO.
+
+Tu trabajo NO consiste en entregar solamente recomendaciones, documentación o un plan. Debes **inspeccionar la instancia, determinar sus capacidades reales, configurar módulos, crear datos de demostración, validar los flujos y dejar Odoo listo para ejecutar una demo comercial de aproximadamente 30 minutos**.
+
+## OBJETIVO
+
+Construir una demo que permita mostrar cómo Odoo puede administrar de punta a punta una consultora ISO:
+
+**Cliente → Proyecto ISO → Etapas → Tareas → Responsables → Planificación → Horas → Documentos → Avance → Rentabilidad → Facturación → Pago → Cierre**
+
+La demo debe sentirse como un sistema realmente utilizado por una consultora ISO y NO como datos genéricos de ejemplo de Odoo.
+
+---
+
+# 1. INSPECCIÓN INICIAL OBLIGATORIA
+
+Antes de modificar nada:
+
+1. Detecta:
+   - versión exacta de Odoo;
+   - Community o Enterprise;
+   - módulos instalados;
+   - módulos disponibles;
+   - base de datos utilizada;
+   - idioma;
+   - compañía configurada;
+   - usuarios existentes;
+   - datos demo existentes;
+   - estado de contabilidad;
+   - soporte disponible para Project, Timesheets, Sales, Invoicing, Accounting, Documents, Planning, Gantt, Analytic Accounting y dependencias de tareas.
+
+2. Determina qué funcionalidades pueden implementarse realmente en esta instalación.
+
+3. NO inventes menús, modelos, campos ni características que la instancia no tenga.
+
+4. Si una funcionalidad requiere Enterprise y la instalación es Community:
+   - no intentes simular una característica inexistente como si fuera nativa;
+   - busca la alternativa funcional más cercana disponible;
+   - documenta claramente la diferencia.
+
+5. Prioriza configuración nativa de Odoo sobre desarrollo custom.
+
+6. Solo desarrolla un módulo custom si existe una necesidad clara que no puede resolverse razonablemente mediante configuración estándar.
+
+Antes de continuar registra un diagnóstico breve:
+
+- Odoo:
+- Edición:
+- Módulos relevantes:
+- Capacidades disponibles:
+- Limitaciones:
+- Estrategia elegida:
+
+Después continúa automáticamente con la implementación.
+
+---
+
+# 2. CONTEXTO DEL NEGOCIO
+
+Asesorías ISO acompaña organizaciones durante:
+
+- diagnóstico;
+- planificación;
+- implementación;
+- capacitación;
+- auditoría interna;
+- preparación para certificación.
+
+También presta:
+
+- consultoría;
+- auditorías internas;
+- capacitación;
+- acompañamiento documental.
+
+La empresa administra múltiples implementaciones ISO simultáneamente y cada implementación/certificación debe representarse como **un proyecto independiente**.
+
+La demo debe representar una consultora que potencialmente administra **más de 250 clientes**, aunque para la demo construiremos una cartera pequeña pero suficientemente rica.
+
+---
+
+# 3. EMPRESA PRINCIPAL DE DEMOSTRACIÓN
+
+Crear el cliente:
+
+**Empresa ABC SpA**
+
+Completar datos empresariales realistas pero ficticios:
+
+- Razón social: Empresa ABC SpA
+- Nombre comercial: Empresa ABC
+- Industria: Servicios / empresa mediana
+- País: Chile
+- Ciudad: Santiago
+- Dirección ficticia
+- teléfono ficticio
+- email ficticio corporativo
+- contacto principal
+- cargo del contacto: Gerente de Operaciones
+
+No utilizar información real de personas o empresas.
+
+---
+
+# 4. PROYECTO PRINCIPAL
+
+Crear:
+
+**Implementación ISO 9001:2015 – Empresa ABC**
+
+Datos:
+
+- Cliente: Empresa ABC SpA
+- Norma: ISO 9001:2015
+- Responsable: Consultor ISO
+- Inicio: 01/11/2026
+- Término estimado: 28/02/2027
+- Horas presupuestadas: 120 h
+
+Si Odoo no posee un campo nativo para "Norma ISO", evaluar:
+
+1. etiquetas;
+2. propiedades;
+3. campos Studio si Enterprise lo permite;
+4. módulo mínimo custom solamente como última opción.
+
+Evitar customización innecesaria.
+
+---
+
+# 5. USUARIOS Y ROLES
+
+Crear o configurar usuarios de demo equivalentes a:
+
+### Consultor ISO
+Responsabilidades:
+- ejecución de tareas;
+- levantamiento;
+- documentación;
+- registro de horas;
+- seguimiento.
+
+### Consultor Senior
+Responsabilidades:
+- supervisión;
+- auditoría;
+- revisión de entregables;
+- aprobación;
+- tareas críticas.
+
+### Administrador / Gerencia
+Debe poder visualizar:
+- cartera de proyectos;
+- avance;
+- carga;
+- horas;
+- situación comercial;
+- facturación;
+- rentabilidad cuando la edición/módulos lo permitan.
+
+Usar nombres ficticios profesionales.
+
+---
+
+# 6. ETAPAS DEL PROYECTO
+
+Configurar el flujo Kanban:
+
+1. Diagnóstico
+2. Planificación
+3. Implementación
+4. Capacitación
+5. Auditoría interna
+6. Certificación
+
+Si las etapas de Project funcionan como estados globales y esto produce problemas entre proyectos, configurar la estructura más limpia soportada por Odoo.
+
+Las etapas deben permitir contar una historia clara durante la demo.
+
+---
+
+# 7. TAREAS
+
+Crear suficientes tareas para que la demo se vea real.
+
+## Diagnóstico
+
+- Reunión Kick-Off
+- Solicitar antecedentes al cliente
+- Levantar procesos actuales
+- Definir alcance del sistema de gestión
+- Ejecutar Gap Analysis
+- Identificar brechas
+- Clasificar brechas por criticidad
+- Elaborar informe de diagnóstico
+- Reunión de revisión con cliente
+
+## Planificación
+
+- Crear plan de implementación
+- Definir responsables
+- Construir matriz de requisitos ISO 9001
+- Definir cronograma
+- Planificar documentación
+- Identificar riesgos del proyecto
+- Validar plan con cliente
+
+## Implementación
+
+- Diseñar mapa de procesos
+- Definir procedimientos
+- Crear documentación
+- Implementar control documental
+- Implementar gestión de riesgos
+- Implementar tratamiento de no conformidades
+- Validar procesos
+- Revisar registros
+- Revisar evidencias
+- Ejecutar acciones pendientes
+
+## Capacitación
+
+- Preparar material de capacitación
+- Capacitación introducción ISO 9001
+- Capacitación gestión documental
+- Capacitación auditoría interna
+- Registrar asistencia
+- Evaluar capacitación
+
+## Auditoría interna
+
+- Crear plan de auditoría
+- Preparar checklist
+- Ejecutar auditoría interna
+- Registrar observaciones
+- Registrar hallazgos
+- Registrar no conformidades
+- Definir acciones correctivas
+- Asignar responsables
+- Verificar evidencias
+- Verificar cierre de hallazgos
+
+## Certificación
+
+- Revisión final del sistema
+- Preparar documentación para auditor externo
+- Revisar evidencias finales
+- Preparar equipo del cliente
+- Simulación de auditoría
+- Acompañamiento auditoría de certificación
+- Resolver observaciones finales
+- Cerrar proyecto
+
+---
+
+# 8. DATOS REALISTAS EN LAS TAREAS
+
+No crear solamente títulos.
+
+Para las tareas importantes agregar:
+
+- descripción;
+- responsable;
+- fecha de inicio si está disponible;
+- fecha límite;
+- prioridad;
+- etiquetas;
+- horas planificadas;
+- horas ejecutadas;
+- actividad pendiente;
+- dependencias cuando estén disponibles;
+- subtareas cuando aporten claridad;
+- comentarios/chatter cuando aporten realismo.
+
+Utilizar textos profesionales relacionados con ISO.
+
+Ejemplo de descripción para Gap Analysis:
+
+"Comparar el estado actual del sistema de gestión de Empresa ABC contra los requisitos aplicables de ISO 9001:2015. Registrar cumplimiento, cumplimiento parcial, brechas identificadas, evidencia disponible, responsable y recomendación."
+
+---
+
+# 9. DISTRIBUCIÓN DE HORAS
+
+El proyecto debe mostrar:
+
+- Horas presupuestadas: **120 h**
+- Horas ejecutadas: **74 h**
+- Horas restantes: **46 h**
+
+Distribución objetivo:
+
+- Consultor Senior: 50 h presupuestadas
+- Consultor ISO: 70 h presupuestadas
+
+Registrar múltiples timesheets realistas hasta aproximarse exactamente a **74 h ejecutadas**.
+
+No registrar una sola entrada de 74 horas.
+
+Distribuir horas entre actividades tales como:
+
+- Kick-Off;
+- entrevistas;
+- levantamiento;
+- Gap Analysis;
+- documentación;
+- reuniones;
+- diseño de procedimientos;
+- auditoría;
+- capacitación.
+
+Las fechas de timesheet deben ser coherentes con las fechas de las tareas.
+
+---
+
+# 10. ESTADO DEL PROYECTO
+
+La demo debe representar un proyecto **en ejecución**, no recién creado ni completamente terminado.
+
+Situación sugerida:
+
+- Diagnóstico: completado.
+- Planificación: completada.
+- Implementación: aproximadamente 70%.
+- Capacitación: iniciada.
+- Auditoría interna: planificada.
+- Certificación: pendiente.
+
+Configurar tareas, Kanban, horas y fechas para que esta situación sea visualmente evidente.
+
+---
+
+# 11. DEPENDENCIAS
+
+Si la edición instalada soporta dependencias de tareas, configurar relaciones realistas.
+
+Ejemplos:
+
+Gap Analysis
+→ Informe de diagnóstico
+→ Plan de implementación
+→ Diseño de procedimientos
+→ Implementación
+→ Auditoría interna
+→ Acciones correctivas
+→ Preparación certificación
+
+No crear dependencias artificiales en todas las tareas.
+
+---
+
+# 12. DOCUMENTOS Y ENTREGABLES
+
+Asociar documentación al proyecto y/o tareas.
+
+Crear archivos de demostración simples si es necesario.
+
+Documentos mínimos:
+
+- 01_Informe_Diagnostico_ISO9001.pdf
+- 02_Gap_Analysis_ISO9001.xlsx
+- 03_Plan_Implementacion_ISO9001.pdf
+- 04_Mapa_Procesos.pdf
+- 05_Procedimiento_Control_Documentos.pdf
+- 06_Matriz_Riesgos.xlsx
+- 07_Plan_Auditoria_Interna.pdf
+- 08_Informe_Auditoria_Interna.pdf
+- 09_Registro_Hallazgos.xlsx
+- 10_Plan_Acciones_Correctivas.xlsx
+
+Los archivos pueden contener contenido demo básico, pero deben parecer entregables coherentes.
+
+Si Documents Enterprise está disponible, utilizarlo.
+
+Si no está disponible, utilizar adjuntos nativos de proyecto/tarea y demostrar claramente esa alternativa.
+
+---
+
+# 13. HALLAZGOS Y ACCIONES CORRECTIVAS
+
+Representar un pequeño escenario de auditoría.
+
+Crear al menos:
+
+### Hallazgo 01
+"Registros de capacitación incompletos para personal incorporado durante el último trimestre."
+
+Clasificación:
+No conformidad menor.
+
+Acción:
+"Regularizar registros y establecer control mensual de evidencias."
+
+Responsable:
+Encargado de Calidad.
+
+Estado:
+En proceso.
+
+### Hallazgo 02
+"No existe evidencia uniforme de revisión anual de proveedores críticos."
+
+Clasificación:
+Observación.
+
+Acción:
+"Crear checklist de evaluación y calendario anual."
+
+Estado:
+Pendiente.
+
+Relacionarlos con tareas si el modelo estándar lo permite.
+
+---
+
+# 14. ACTIVIDADES Y CHATTER
+
+Agregar actividad visible en algunos registros.
+
+Ejemplos:
+
+- "Cliente debe enviar organigrama actualizado."
+- "Revisar matriz de riesgos con Gerencia."
+- "Confirmar participantes capacitación."
+- "Validar acciones correctivas antes de auditoría."
+
+Crear algunos mensajes de chatter realistas:
+
+- entrega de documento;
+- comentario del consultor;
+- aprobación del cliente;
+- solicitud de evidencia.
+
+Esto debe ayudar a mostrar colaboración y trazabilidad.
+
+---
+
+# 15. CARTERA MULTIPROYECTO
+
+Crear además:
+
+### Cliente B
+Proyecto:
+**Implementación ISO 45001:2018 – Cliente B**
+
+Estado:
+Diagnóstico.
+
+### Cliente C
+Proyecto:
+**Implementación ISO 27001:2022 – Cliente C**
+
+Estado:
+Implementación.
+
+### Cliente D
+Proyecto:
+**Implementación ISO 14001:2015 – Cliente D**
+
+Estado:
+Auditoría interna.
+
+Cada proyecto debe tener:
+
+- cliente;
+- responsable;
+- fechas;
+- varias tareas;
+- prioridades;
+- horas planificadas;
+- algo de horas ejecutadas;
+- avance diferente.
+
+No es necesario replicar todas las tareas del proyecto principal.
+
+Objetivo: demostrar visualmente que la consultora administra varios proyectos simultáneamente.
+
+---
+
+# 16. CARGA DE TRABAJO
+
+Si la instalación posee Planning, resource allocation, Gantt o alguna funcionalidad equivalente:
+
+Configurar una vista donde pueda observarse la carga de:
+
+- Consultor ISO;
+- Consultor Senior.
+
+Crear una situación realista donde:
+
+- Consultor ISO tenga mayor carga durante implementación;
+- Consultor Senior participe en diagnóstico, revisión y auditoría;
+- existan proyectos solapados.
+
+Si Community no soporta esta visualización de forma nativa, no fingirla.
+
+Mostrar como alternativa:
+
+- tareas por responsable;
+- fechas;
+- horas;
+- filtros;
+- agrupaciones.
+
+---
+
+# 17. ANALÍTICA Y RENTABILIDAD
+
+Determinar primero las capacidades reales de la versión instalada.
+
+Cuando sea posible:
+
+Configurar una cuenta analítica asociada al proyecto principal:
+
+**ISO9001-EMPRESA-ABC**
+
+Registrar:
+
+- horas;
+- ingresos;
+- costos cuando Odoo permita hacerlo correctamente;
+- facturación relacionada.
+
+El objetivo es demostrar si el proyecto se está ejecutando dentro del presupuesto.
+
+Mostrar como mínimo:
+
+- 120 h planificadas;
+- 74 h consumidas;
+- 46 h restantes.
+
+Si es posible calcular rentabilidad real:
+
+- precio vendido;
+- costo estimado;
+- costo ejecutado;
+- margen esperado;
+- margen actual.
+
+Usar valores ficticios razonables en CLP.
+
+Ejemplo orientativo:
+
+Venta proyecto:
+CLP $6.000.000 + IVA
+
+Distribuir comercialmente el servicio de manera coherente.
+
+No fuerces un cálculo de rentabilidad que Odoo no soporte correctamente.
+
+---
+
+# 18. VENTA DEL SERVICIO
+
+Si Sales está disponible:
+
+Crear una cotización o pedido de venta para Empresa ABC.
+
+Servicio:
+
+**Implementación Sistema de Gestión ISO 9001:2015**
+
+Descripción:
+"Servicio de diagnóstico, planificación, implementación, capacitación, auditoría interna y preparación para certificación ISO 9001:2015."
+
+Precio:
+CLP $6.000.000 netos
+
+Configurar correctamente impuestos chilenos solo si la localización instalada permite hacerlo sin romper la instancia.
+
+Si no existe localización chilena funcional, usar una configuración demo simple y documentarlo.
+
+Relacionar la venta con el proyecto cuando Odoo lo permita.
+
+---
+
+# 19. FACTURACIÓN
+
+Crear al menos una factura demo.
+
+Escenario:
+
+Contrato total:
+CLP $6.000.000 netos.
+
+Primer hito:
+40%.
+
+Factura:
+CLP $2.400.000 netos.
+
+Concepto:
+"40% Implementación ISO 9001 – Inicio y Diagnóstico"
+
+Dejar la factura en un estado útil para demo según las capacidades reales de la instalación.
+
+Si se puede registrar un pago demo correctamente:
+
+Registrar pago.
+
+Si Accounting permite conciliación bancaria real:
+
+Crear un escenario simple para mostrar:
+
+Factura
+→ Registro contable
+→ Pago
+→ Conciliación bancaria
+
+Si la funcionalidad requiere Enterprise o configuración bancaria inexistente, no falsificar el flujo.
+
+---
+
+# 20. DASHBOARD Y FILTROS
+
+Preparar vistas fáciles de mostrar durante la demo.
+
+Crear filtros/favoritos razonables si Odoo lo soporta:
+
+- Mis proyectos ISO
+- Proyectos activos
+- Auditorías pendientes
+- Tareas atrasadas
+- Tareas de alta prioridad
+- Actividades de esta semana
+- Proyectos ISO 9001
+- Consultor ISO
+- Consultor Senior
+
+Preparar agrupaciones útiles:
+
+- por proyecto;
+- responsable;
+- etapa;
+- cliente;
+- fecha límite.
+
+---
+
+# 21. CALIDAD VISUAL DE LOS DATOS
+
+La instancia debe verse comercialmente creíble.
+
+Evitar:
+
+- "Test 1"
+- "Test 2"
+- "Demo task"
+- "Lorem ipsum"
+- clientes llamados "Cliente prueba"
+- fechas incoherentes
+- tareas sin responsable
+- proyectos vacíos
+- horas absurdas
+- todo en la misma etapa
+
+Utilizar nombres y textos profesionalmente coherentes.
+
+---
+
+# 22. NO SOBREPERSONALIZAR ODOO
+
+Prioridad:
+
+1. configuración estándar;
+2. datos demo;
+3. etiquetas;
+4. propiedades/campos configurables;
+5. automatizaciones simples;
+6. desarrollo custom solamente cuando sea estrictamente necesario.
+
+NO desarrollar un ERP paralelo dentro de Odoo.
+
+La demo debe demostrar las capacidades de Odoo.
+
+---
+
+# 23. SI ES NECESARIO DESARROLLAR UN MÓDULO
+
+Solo hacerlo si aporta valor comercial claro.
+
+Ejemplos razonables:
+
+- campo "Norma ISO";
+- tipo de servicio ISO;
+- criticidad de hallazgo;
+- indicador de avance.
+
+Si se crea un módulo custom:
+
+- seguir estructura oficial de addons Odoo;
+- prefijo identificable;
+- dependencias mínimas;
+- sin modificar core;
+- sin monkey patches;
+- datos demo separados;
+- seguridad definida;
+- permisos mínimos necesarios;
+- vistas limpias;
+- upgrade/install validado;
+- logs sin errores.
+
+Antes de desarrollar revisar si el problema puede resolverse con campos existentes.
+
+---
+
+# 24. AUTOMATIZACIÓN PERMITIDA
+
+Puedes utilizar:
+
+- interfaz web;
+- Odoo shell;
+- ORM;
+- XML-RPC/JSON-RPC si la versión lo soporta;
+- scripts puntuales;
+- fixtures;
+- módulos custom;
+- carga mediante CSV.
+
+Prioriza el mecanismo más robusto y reproducible.
+
+No manipules directamente tablas PostgreSQL salvo diagnóstico excepcional.
+
+Las modificaciones de negocio deben realizarse preferentemente mediante ORM de Odoo.
+
+---
+
+# 25. SEGURIDAD
+
+No:
+
+- borrar bases de datos;
+- eliminar configuración existente importante;
+- sobrescribir usuarios reales;
+- desinstalar módulos sin necesidad;
+- cambiar credenciales existentes;
+- exponer secretos;
+- insertar claves dentro del código.
+
+Preservar datos preexistentes.
+
+Si la instancia ya contiene datos demo o configuraciones del usuario, añadir el escenario sin destruirlos.
+
+---
+
+# 26. VALIDACIONES
+
+Después de construir la demo validar obligatoriamente:
+
+### Proyecto principal
+
+Existe:
+"Implementación ISO 9001:2015 – Empresa ABC"
+
+### Cliente
+
+Existe:
+"Empresa ABC SpA"
+
+### Etapas
+
+Existen las seis fases ISO.
+
+### Tareas
+
+Existe un conjunto suficiente y distribuido entre etapas.
+
+### Horas
+
+Debe observarse:
+
+120 h presupuestadas
+74 h ejecutadas
+46 h restantes
+
+o el equivalente correcto según cómo la versión de Odoo represente este cálculo.
+
+### Documentos
+
+Existen documentos o adjuntos vinculados.
+
+### Portafolio
+
+Existen los cuatro proyectos:
+
+- ISO 9001
+- ISO 45001
+- ISO 27001
+- ISO 14001
+
+### Comercial
+
+Si Sales/Invoicing están disponibles:
+
+- venta/cotización;
+- factura;
+- relación con cliente;
+- flujo demostrable.
+
+### Interfaz
+
+Verificar que las vistas utilizadas durante la demo cargan correctamente.
+
+### Logs
+
+No dejar errores relevantes generados por la implementación.
+
+---
+
+# 27. GUION DE DEMOSTRACIÓN
+
+Además de construir el sistema, debes dejar preparado el guion exacto de navegación.
+
+Duración objetivo:
+**25–30 minutos**
+
+## Bloque 1 — Cliente
+
+Abrir Empresa ABC.
+
+Explicar:
+
+"Empresa ABC contrató una implementación ISO 9001 y toda su ejecución puede trazarse desde Odoo."
+
+Duración:
+2 minutos.
+
+## Bloque 2 — Proyecto
+
+Abrir:
+
+Implementación ISO 9001:2015 – Empresa ABC.
+
+Mostrar:
+
+- cliente;
+- responsable;
+- fechas;
+- presupuesto;
+- actividades.
+
+Duración:
+3 minutos.
+
+## Bloque 3 — Metodología ISO
+
+Mostrar Kanban:
+
+Diagnóstico
+→ Planificación
+→ Implementación
+→ Capacitación
+→ Auditoría interna
+→ Certificación.
+
+Explicar que replica el ciclo operativo utilizado por la consultora.
+
+Duración:
+4 minutos.
+
+## Bloque 4 — Ejecución
+
+Abrir Gap Analysis.
+
+Mostrar:
+
+- descripción;
+- responsable;
+- fecha;
+- prioridad;
+- horas;
+- documentos;
+- chatter;
+- dependencias.
+
+Duración:
+4 minutos.
+
+## Bloque 5 — Documentación
+
+Mostrar:
+
+- Gap Analysis;
+- diagnóstico;
+- procedimientos;
+- evidencias;
+- auditoría;
+- acciones correctivas.
+
+Duración:
+3 minutos.
+
+## Bloque 6 — Horas
+
+Mostrar:
+
+120 h presupuestadas
+74 h ejecutadas
+46 h restantes.
+
+Mostrar distribución por consultor cuando sea posible.
+
+Duración:
+3 minutos.
+
+## Bloque 7 — Cartera
+
+Mostrar proyectos:
+
+ISO 9001
+ISO 45001
+ISO 27001
+ISO 14001.
+
+Explicar que cada certificación se administra como proyecto independiente.
+
+Duración:
+3 minutos.
+
+## Bloque 8 — Rentabilidad
+
+Mostrar cuenta analítica / rentabilidad / horas según capacidades disponibles.
+
+Duración:
+3 minutos.
+
+## Bloque 9 — Comercial y contabilidad
+
+Mostrar:
+
+Cliente
+→ Venta
+→ Factura
+→ Pago
+
+y conciliación solo si realmente está disponible.
+
+Duración:
+3 minutos.
+
+---
+
+# 28. HISTORIA QUE DEBE CONTAR LA DEMO
+
+El relato comercial debe ser:
+
+"Empresa ABC contrata una implementación ISO 9001.
+
+Se crea el proyecto.
+
+Primero se realiza un diagnóstico y Gap Analysis.
+
+A partir de las brechas detectadas se construye el plan.
+
+Los consultores ejecutan actividades y registran horas.
+
+La documentación y las evidencias quedan asociadas al proyecto.
+
+Luego se realizan capacitaciones.
+
+La auditoría interna genera hallazgos y acciones correctivas.
+
+Se cierran las brechas.
+
+Finalmente se prepara al cliente para certificación.
+
+Paralelamente, la gerencia puede controlar proyectos, responsables, fechas, carga, horas, facturación y rentabilidad."
+
+Toda la configuración debe apoyar esta narrativa.
+
+---
+
+# 29. ENTREGABLE FINAL DEL AGENTE
+
+Después de terminar la implementación responde únicamente con información comprobada.
+
+Formato:
+
+## IMPLEMENTADO
+
+- versión Odoo;
+- edición;
+- módulos utilizados;
+- clientes creados;
+- proyectos creados;
+- usuarios/roles creados;
+- tareas creadas;
+- horas registradas;
+- documentos creados;
+- ventas/facturas creadas;
+- funcionalidades adicionales configuradas.
+
+## LIMITACIONES
+
+Indicar cualquier requisito no disponible debido a:
+
+- Community vs Enterprise;
+- módulos ausentes;
+- configuración incompleta;
+- localización;
+- limitaciones técnicas.
+
+## DEMO
+
+Entregar una tabla:
+
+| Minuto | Pantalla | Registro | Qué mostrar | Mensaje comercial |
+|---|---|---|---|---|
+
+Construir el recorrido completo de 25–30 minutos.
+
+## ACCESO / NAVEGACIÓN
+
+Indicar rutas de menú exactas verificadas en ESTA instancia.
+
+No inventar menús.
+
+## VALIDACIÓN
+
+Indicar qué validaste realmente.
+
+Ejemplo:
+
+- Proyecto principal: OK
+- 120 h presupuestadas: OK
+- 74 h ejecutadas: OK
+- Cuatro proyectos ISO: OK
+- Documentos: OK
+- Venta: OK
+- Factura: OK
+- Gantt: NO DISPONIBLE
+- Conciliación bancaria: NO CONFIGURADA
+
+## CAMBIOS TÉCNICOS
+
+Si modificaste archivos:
+
+- rutas;
+- módulos;
+- archivos;
+- finalidad.
+
+Si ejecutaste scripts:
+
+- indicar qué hicieron;
+- dejar solo scripts reproducibles útiles;
+- eliminar temporales.
+
+---
+
+# 30. REGLAS FINALES
+
+No te detengas después del análisis.
+
+No me preguntes qué opción prefiero cuando puedas inspeccionarlo directamente.
+
+No entregues únicamente instrucciones para que yo configure Odoo.
+
+**Ejecuta la configuración tú mismo.**
+
+No inventes funcionalidades.
+
+No uses pantallas Enterprise si estamos en Community.
+
+No uses datos genéricos que resten credibilidad comercial.
+
+No sobrearquitectures.
+
+No destruyas configuración existente.
+
+No abandones la tarea ante el primer error: diagnostica, corrige y continúa.
+
+Si encuentras una limitación, implementa la mejor alternativa disponible.
+
+Prioriza una demo:
+
+**visual + coherente + comercial + funcional + reproducible.**
+
+Resultado esperado:
+
+> Al abrir la instancia de Odoo debe ser posible realizar inmediatamente una demostración comercial completa de cómo una consultora de implementación ISO puede gestionar clientes, proyectos, metodología, tareas, consultores, horas, documentos, auditorías, cartera, facturación y rentabilidad utilizando Odoo.

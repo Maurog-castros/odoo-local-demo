@@ -7,13 +7,13 @@ services:
     container_name: odoo-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_DB: odoo_db
+      POSTGRES_DB: odoo_demo_19
       POSTGRES_USER: odoo_user
       POSTGRES_PASSWORD: odoo_pass
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data_19:/var/lib/postgresql/data
     networks:
       - odoo_network
 
@@ -21,10 +21,10 @@ services:
   # Odoo Backend (servidor de aplicaciones)
   # ─────────────────────────────────────────────
   odoo:
-    image: odoo:17
+    image: odoo:19.0-20260926
     container_name: odoo-backend
     restart: unless-stopped
-    command: ["odoo", "--database=odoo_db", "--init=base", "--without-demo=all"]
+    command: ["odoo", "--database=odoo_demo_19", "--init=base,iso_demo", "--without-demo=True"]
     depends_on:
       - postgres
     ports:
@@ -34,11 +34,12 @@ services:
       - port=5432
       - user=odoo_user
       - password=odoo_pass
-      - database=odoo_db
+      - database=odoo_demo_19
       - admin_password=Admin123
     volumes:
       - ./odoo.conf:/etc/odoo/odoo.conf:ro
       - ./my_addons:/mnt/addons
+      - odoo_data_19:/var/lib/odoo
     networks:
       - odoo_network
 
@@ -63,7 +64,8 @@ services:
 # Volumes & Networks
 # ──────────────────────────────────────────────
 volumes:
-  postgres_data:
+  postgres_data_19:
+  odoo_data_19:
 
 networks:
   odoo_network:

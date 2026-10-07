@@ -1,13 +1,13 @@
 # Odoo Local Demo — Docker Compose
 
-Ambiente Odoo con containers separados para desarrollo local.
+Ambiente Odoo 19 Community con containers separados para desarrollo local.
 
 ## Arquitectura
 
 ```
 ┌─────────────┐     ┌──────────────┐     ┌──────────────┐
 │   Nginx     │     │   Odoo       │     │  PostgreSQL  │
-│  (puerto 80)│────▶│  (puerto     │────▶│  (puerto     │
+│  (puerto 80)│───▶│  (puerto     │───▶│  (puerto     │
 │  Frontend   │     │   8069)      │     │   5432)      │
 │  Proxy      │     │  Backend     │     │  Database    │
 └─────────────┘     └──────────────┘     └──────────────┘
@@ -49,7 +49,7 @@ docker compose restart
 | Usuario inicial | `admin` |
 | Contraseña inicial | `admin` |
 | Contraseña maestra de BD | Configurada en `odoo.conf` |
-| DB name    | `odoo_db`   |
+| DB name    | `odoo_demo_19`   |
 | DB user    | `odoo_user` |
 | DB pass    | `odoo_pass` |
 
@@ -64,7 +64,8 @@ docker compose restart
 │   └── conf.d/
 │       └── default.conf  # Reverse proxy config
 └── my_addons/
-    └── mi_modulo/        # Módulos personalizados (live reload)
+    ├── mi_modulo/        # Addon mínimo de ejemplo
+    └── iso_demo/         # Datos reproducibles de demo ISO
 ```
 
 ## Crear un módulo personalizado
@@ -77,5 +78,6 @@ docker compose restart
 ## Notas
 
 - Los módulos en `my_addons/` se montan como volumen → cambios en código se reflejan al reiniciar Odoo
-- Los datos de PostgreSQL persisten en un Docker volume (`postgres_data`)
+- Los datos de PostgreSQL persisten en un Docker volume (`postgres_data_19`)
+- La demo ISO se instala automáticamente junto con el stack e incluye proyectos, tareas, horas, adjuntos, cotización, factura y pago de demostración.
 - Nginx maneja estáticos, gzip, y WebSocket para longpolling
