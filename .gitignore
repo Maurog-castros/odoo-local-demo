@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Odoo logs
+logs/
+*.log
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker volumes (no se versionan)
+postgres_data/
+odoo_addons/
+
+# Environment
+.env

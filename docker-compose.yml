@@ -1,0 +1,72 @@
+services:
+  # ─────────────────────────────────────────────
+  # PostgreSQL 15
+  # ─────────────────────────────────────────────
+  postgres:
+    image: postgres:15
+    container_name: odoo-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: odoo_db
+      POSTGRES_USER: odoo_user
+      POSTGRES_PASSWORD: odoo_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - odoo_network
+
+  # ─────────────────────────────────────────────
+  # Odoo Backend (servidor de aplicaciones)
+  # ─────────────────────────────────────────────
+  odoo:
+    image: odoo:17
+    container_name: odoo-backend
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    ports:
+      - "8069:8069"
+    environment:
+      - host=postgres
+      - port=5432
+      - user=odoo_user
+      - password=odoo_pass
+      - database=odoo_db
+      - admin_password=Admin123
+    volumes:
+      - odoo_addons:/etc/odoo/addons/my_custom_modules
+      - odoo_config:/etc/odoo
+      - ./my_addons:/mnt/addons
+    networks:
+      - odoo_network
+
+  # ─────────────────────────────────────────────
+  # Nginx (reverse proxy / frontend)
+  # ─────────────────────────────────────────────
+  nginx:
+    image: nginx:alpine
+    container_name: odoo-frontend
+    restart: unless-stopped
+    depends_on:
+      - odoo
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+    networks:
+      - odoo_network
+
+# ──────────────────────────────────────────────
+# Volumes & Networks
+# ──────────────────────────────────────────────
+volumes:
+  postgres_data:
+  odoo_addons:
+  odoo_config:
+
+networks:
+  odoo_network:
+    driver: bridge
